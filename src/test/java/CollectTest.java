@@ -109,7 +109,6 @@ public class CollectTest {
             map.put("updatetime", "2017-09-12");
             esSubmitQueue.append(map);
             i++;
-            Thread.sleep(100);
         }
     }
 }
