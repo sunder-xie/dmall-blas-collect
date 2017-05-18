@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd ">
+	
+	<!-- Connector -->
+	<bean id="dafkaSConnectionFactory" class="com.dmall.dafka.sdk.spring.DafkaConnectionFactory">
+		<property name="clusterId" value="${mq.connect.clusterId}" />
+		<property name="appKey" value="${mq.connect.appKey}" />
+		<property name="secretKey" value="${mq.connect.secretKey}" />
+		<property name="authUrl" value="${mq.connect.authUrl}" />
+	</bean>
+<!-- 	<bean id="preOrderMonitorAgent" class="com.dmall.blas.collect.agent.PreOrderMonitorAgent" scope="prototype">
+		获取到多少条消息后会强制提交位置点 
+		<property name="msgCntShouldCommit" value="50" />		
+		多长时间后会强制提交位置点，单位为毫秒 
+		<property name="timeOutShouldCommit" value="30000" />
+	</bean>	 
+	<bean id="rcsMonitorOrderConsumer" class="com.dmall.dafka.sdk.spring.DafkaConsumerListener" init-method="init">
+		<property name="connectionFactory" ref="dafkaSConnectionFactory" />
+		<property name="messageHandler" ref="preOrderMonitorAgent"></property>
+		<property name="properties">
+			<props>
+				<prop key="group.id">group_rcs_monitor_default</prop>
+				<prop key="topic">${rcs.monitor.order.topic}</prop>
+				<prop key="serializer.class">kafka.serializer.StringEncoder</prop>
+				<prop key="request.required.acks">-1</prop>
+				<prop key="rebalance.max.retries">10</prop>
+				<prop key="retry.backoff.ms">500</prop>
+				<prop key="zookeeper.connection.timeout.ms">100000</prop>
+				<prop key="zookeeper.session.timeout.ms">60000</prop>				
+			</props>
+		</property>
+	</bean> -->
+	
+	<!-- Connector -->
+<!-- 	<bean id="postConnectionFactory" class="com.dmall.dafka.sdk.spring.DafkaConnectionFactory">
+		<property name="clusterId" value="${post.mq.connect.clusterId}" />
+		<property name="appKey" value="${post.mq.connect.appKey}" />
+		<property name="secretKey" value="${post.mq.connect.secretKey}" />
+		<property name="authUrl" value="${post.mq.connect.authUrl}" />
+	</bean>
+	<bean id="postOrderMonitorAgent" class="com.dmall.blas.collect.agent.PostOrderMonitorAgent" scope="prototype">
+		获取到多少条消息后会强制提交位置点 
+		<property name="msgCntShouldCommit" value="50" />		
+		多长时间后会强制提交位置点，单位为毫秒 
+		<property name="timeOutShouldCommit" value="30000" />
+	</bean>	 
+	<bean id="postOrderConsumer" class="com.dmall.dafka.sdk.spring.DafkaConsumerListener" init-method="init">
+		<property name="connectionFactory" ref="postConnectionFactory" />
+		<property name="messageHandler" ref="postOrderMonitorAgent"></property>
+		<property name="properties">
+			<props>
+				<prop key="group.id">group_rcs</prop>
+				<prop key="topic">${rcs.monitor.post.order.topic}</prop>
+				<prop key="serializer.class">kafka.serializer.StringEncoder</prop>
+				<prop key="request.required.acks">-1</prop>
+				<prop key="rebalance.max.retries">10</prop>
+				<prop key="retry.backoff.ms">500</prop>
+				<prop key="zookeeper.connection.timeout.ms">100000</prop>
+				<prop key="zookeeper.session.timeout.ms">60000</prop>				
+			</props>
+		</property>
+	</bean>	 -->
+	<!-- 
+	<bean id="rcsInterceptOrderProducer" class="com.dmall.dafka.sdk.spring.DafkaProducerListener" init-method="init">
+		<property name="connectionFactory" ref="dafkaSConnectionFactory" />
+		<property name="properties">
+			<props>
+				<prop key="group.id">group_rcs</prop>
+				<prop key="topic">${rcs.intercept.order.topic}</prop>
+				<prop key="request.timeout.ms">6000</prop>
+				<prop key="serializer.class">kafka.serializer.StringEncoder</prop>
+				<prop key="request.required.acks">-1</prop>
+				<prop key="message.send.max.retries">10</prop>
+				<prop key="retry.backoff.ms">500</prop>
+			</props>
+		</property>
+	</bean>
+	 -->
+	 
+	<!--  <bean id="orderCompletePayMonitorAgent" class="com.dmall.blas.collect.agent.OrderCompletePayMonitorAgent" scope="prototype">
+		获取到多少条消息后会强制提交位置点 
+		<property name="msgCntShouldCommit" value="50" />		
+		多长时间后会强制提交位置点，单位为毫秒 
+		<property name="timeOutShouldCommit" value="30000" />
+	</bean>	 
+	<bean id="orderCompletePayConsumer" class="com.dmall.dafka.sdk.spring.DafkaConsumerListener" init-method="init">
+		<property name="connectionFactory" ref="dafkaSConnectionFactory" />
+		<property name="messageHandler" ref="orderCompletePayMonitorAgent"></property>
+		<property name="properties">
+			<props>
+				<prop key="group.id">group_rcs</prop>
+				<prop key="topic">${rcs.monitor.order.complete.pay.topic}</prop>
+				<prop key="serializer.class">kafka.serializer.StringEncoder</prop>
+				<prop key="request.required.acks">-1</prop>
+				<prop key="rebalance.max.retries">10</prop>
+				<prop key="retry.backoff.ms">500</prop>
+				<prop key="zookeeper.connection.timeout.ms">100000</prop>
+				<prop key="zookeeper.session.timeout.ms">60000</prop>				
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="orderPauseMonitorAgent" class="com.dmall.blas.collect.agent.OrderPauseMonitorAgent" scope="prototype">
+		获取到多少条消息后会强制提交位置点 
+		<property name="msgCntShouldCommit" value="50" />		
+		多长时间后会强制提交位置点，单位为毫秒 
+		<property name="timeOutShouldCommit" value="30000" />
+	</bean>	 
+	<bean id="orderPauseConsumer" class="com.dmall.dafka.sdk.spring.DafkaConsumerListener" init-method="init">
+		<property name="connectionFactory" ref="dafkaSConnectionFactory" />
+		<property name="messageHandler" ref="orderPauseMonitorAgent"></property>
+		<property name="properties">
+			<props>
+				<prop key="group.id">group_rcs</prop>
+				<prop key="topic">${rcs.monitor.order.pause.topic}</prop>
+				<prop key="serializer.class">kafka.serializer.StringEncoder</prop>
+				<prop key="request.required.acks">-1</prop>
+				<prop key="rebalance.max.retries">10</prop>
+				<prop key="retry.backoff.ms">500</prop>
+				<prop key="zookeeper.connection.timeout.ms">100000</prop>
+				<prop key="zookeeper.session.timeout.ms">60000</prop>				
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="orderFinishedMonitorAgent" class="com.dmall.blas.collect.agent.OrderFinishedMonitorAgent" scope="prototype">
+		获取到多少条消息后会强制提交位置点 
+		<property name="msgCntShouldCommit" value="50" />		
+		多长时间后会强制提交位置点，单位为毫秒 
+		<property name="timeOutShouldCommit" value="30000" />
+	</bean>	 
+	<bean id="orderFinishedConsumer" class="com.dmall.dafka.sdk.spring.DafkaConsumerListener" init-method="init">
+		<property name="connectionFactory" ref="dafkaSConnectionFactory" />
+		<property name="messageHandler" ref="orderFinishedMonitorAgent"></property>
+		<property name="properties">
+			<props>
+				<prop key="group.id">group_rcs</prop>
+				<prop key="topic">${rcs.monitor.order.finished.topic}</prop>
+				<prop key="serializer.class">kafka.serializer.StringEncoder</prop>
+				<prop key="request.required.acks">-1</prop>
+				<prop key="rebalance.max.retries">10</prop>
+				<prop key="retry.backoff.ms">500</prop>
+				<prop key="zookeeper.connection.timeout.ms">100000</prop>
+				<prop key="zookeeper.session.timeout.ms">60000</prop>				
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="orderCancelMonitorAgent" class="com.dmall.blas.collect.agent.OrderCancelMonitorAgent" scope="prototype">
+		获取到多少条消息后会强制提交位置点 
+		<property name="msgCntShouldCommit" value="50" />		
+		多长时间后会强制提交位置点，单位为毫秒 
+		<property name="timeOutShouldCommit" value="30000" />
+	</bean>	 
+	<bean id="orderCancelConsumer" class="com.dmall.dafka.sdk.spring.DafkaConsumerListener" init-method="init">
+		<property name="connectionFactory" ref="dafkaSConnectionFactory" />
+		<property name="messageHandler" ref="orderCancelMonitorAgent"></property>
+		<property name="properties">
+			<props>
+				<prop key="group.id">group_rcs</prop>
+				<prop key="topic">${rcs.monitor.order.cancel.topic}</prop>
+				<prop key="serializer.class">kafka.serializer.StringEncoder</prop>
+				<prop key="request.required.acks">-1</prop>
+				<prop key="rebalance.max.retries">10</prop>
+				<prop key="retry.backoff.ms">500</prop>
+				<prop key="zookeeper.connection.timeout.ms">100000</prop>
+				<prop key="zookeeper.session.timeout.ms">60000</prop>				
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="orderModifyMonitorAgent" class="com.dmall.blas.collect.agent.OrderModifyMonitorAgent" scope="prototype">
+		获取到多少条消息后会强制提交位置点 
+		<property name="msgCntShouldCommit" value="50" />		
+		多长时间后会强制提交位置点，单位为毫秒 
+		<property name="timeOutShouldCommit" value="30000" />
+	</bean>	 
+	<bean id="orderModifyConsumer" class="com.dmall.dafka.sdk.spring.DafkaConsumerListener" init-method="init">
+		<property name="connectionFactory" ref="dafkaSConnectionFactory" />
+		<property name="messageHandler" ref="orderModifyMonitorAgent"></property>
+		<property name="properties">
+			<props>
+				<prop key="group.id">group_rcs</prop>
+				<prop key="topic">${rcs.monitor.order.modify.topic}</prop>
+				<prop key="serializer.class">kafka.serializer.StringEncoder</prop>
+				<prop key="request.required.acks">-1</prop>
+				<prop key="rebalance.max.retries">10</prop>
+				<prop key="retry.backoff.ms">500</prop>
+				<prop key="zookeeper.connection.timeout.ms">100000</prop>
+				<prop key="zookeeper.session.timeout.ms">60000</prop>				
+			</props>
+		</property>
+	</bean>
+	
+ 	<bean id="streamingCalcDataAgent" class="com.dmall.blas.collect.agent.StreamingCalcDataAgent" scope="prototype">
+		获取到多少条消息后会强制提交位置点 
+		<property name="msgCntShouldCommit" value="50" />		
+		多长时间后会强制提交位置点，单位为毫秒 
+		<property name="timeOutShouldCommit" value="30000" />
+	</bean>	 
+	<bean id="streamingCalcDataConsumer" class="com.dmall.dafka.sdk.spring.DafkaConsumerListener" init-method="init">
+		<property name="connectionFactory" ref="dafkaSConnectionFactory" />
+		<property name="messageHandler" ref="streamingCalcDataAgent"></property>
+		<property name="properties">
+			<props>
+				<prop key="group.id">group_rcs_streaming</prop>
+				<prop key="topic">${rcs.streamming.cal.data.topic}</prop>
+				<prop key="serializer.class">kafka.serializer.StringEncoder</prop>
+				<prop key="request.required.acks">-1</prop>
+				<prop key="rebalance.max.retries">10</prop>
+				<prop key="retry.backoff.ms">500</prop>
+				<prop key="zookeeper.connection.timeout.ms">100000</prop>
+				<prop key="zookeeper.session.timeout.ms">60000</prop>				
+			</props>
+		</property>
+	</bean> -->
+</beans>
