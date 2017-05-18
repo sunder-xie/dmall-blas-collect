@@ -147,7 +147,6 @@ public class CollectDataServiceImpl implements CollectDataService, InitializingB
                 }
             }
         });
-
     }
 
     @Override
