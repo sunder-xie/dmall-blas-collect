@@ -86,4 +86,9 @@ public class CollectTest {
         Jedis jedis = new Jedis("localhost");
         jedis.set("aaa.com", "aaa");
     }
+
+    @Test
+    public void testGroovy() {
+        
+    }
 }
