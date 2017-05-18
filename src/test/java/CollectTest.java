@@ -1,4 +1,5 @@
 import com.dmall.blas.collect.core.DataFactory;
+import com.dmall.blas.collect.core.GroovyExecutor;
 import com.dmall.blas.collect.service.CollectDataService;
 import com.dmall.blas.collect.service.GroovyService;
 import com.dmall.blas.collect.util.ESUtils;
@@ -84,11 +85,11 @@ public class CollectTest {
     @Test
     public void testRedis() {
         Jedis jedis = new Jedis("localhost");
-        jedis.set("aaa.com", "aaa");
+        System.out.println(jedis.get("ccc.com"));
     }
 
     @Test
-    public void testGroovy() {
-        
+    public void testGroovy() throws Exception {
+        GroovyExecutor.invoke("ddd.com", "helloworld", null);
     }
 }

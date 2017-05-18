@@ -31,13 +31,13 @@ public class GroovyExecutor {
      * @return
      * @throws Exception
      */
-    public Script getScript(String url) throws Exception {
+    public static Script getScript(String url) throws Exception {
         Script script = null;
         String scriptStr = GatherToolkit.dataCacher().getGroovy(url);
         if (scriptStr != null) {
-            if (!scriptStr.contains(IMPORT_COMMON_CONF_GROOVY)) {
-                scriptStr = IMPORT_COMMON_CONF_GROOVY + ";\n" + scriptStr;
-            }
+//            if (!scriptStr.contains(IMPORT_COMMON_CONF_GROOVY)) {
+//                scriptStr = IMPORT_COMMON_CONF_GROOVY + ";\n" + scriptStr;
+//            }
             script = GroovyContext.Singleton().getScript(url, scriptStr);
         }
         return script;
@@ -46,14 +46,14 @@ public class GroovyExecutor {
     /**
      * 执行groovy脚本
      *
-     * @param commonConfKey 脚本的key值
+     * @param url 脚本的key值
      * @param methodName    脚本方法名称
      * @param params        脚本方法入参
      * @return
      * @throws Exception
      */
-    public Object invoke(String commonConfKey, String methodName, Object params) throws Exception {
-        Script script = getScript(commonConfKey);
+    public static Object invoke(String url, String methodName, Object params) throws Exception {
+        Script script = getScript(url);
         if (script == null) {
             return null;
         }
