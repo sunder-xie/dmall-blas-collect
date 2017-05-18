@@ -24,5 +24,9 @@
     <bean class="com.dmall.blas.collect.service.impl.CollectDataServiceImpl">
         <property name="esClient" ref="esClient"/>
     </bean>
-    
+
+    <bean class="com.dmall.blas.collect.core.EsSubmitQueue">
+        <property name="maxCommitCount" value="150"/>
+        <property name="taskCount" value="3"/>
+    </bean>
 </beans>

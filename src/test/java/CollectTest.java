@@ -1,4 +1,5 @@
 import com.dmall.blas.collect.core.DataFactory;
+import com.dmall.blas.collect.core.EsSubmitQueue;
 import com.dmall.blas.collect.core.GroovyExecutor;
 import com.dmall.blas.collect.service.CollectDataService;
 import com.dmall.blas.collect.service.GroovyService;
@@ -35,6 +36,9 @@ public class CollectTest {
 
     @Resource
     private CollectDataService service;
+
+    @Resource
+    private EsSubmitQueue esSubmitQueue;
 
     @Test
     public void test() throws Exception {
@@ -90,6 +94,22 @@ public class CollectTest {
 
     @Test
     public void testGroovy() throws Exception {
-        GroovyExecutor.invoke("eee.com", "helloworld",null );
+        GroovyExecutor.invoke("eee.com", "helloworld", null);
+    }
+
+    @Test
+    public void testQueue() throws Exception {
+        int i = 0;
+        while (true) {
+            HashMap<String, Object> map = new HashMap<String, Object>();
+            map.put("id", 12 + i);
+            map.put("title", "title");
+            map.put("posttime", "2016-09-22");
+            map.put("content", "content");
+            map.put("updatetime", "2017-09-12");
+            esSubmitQueue.append(map);
+            i++;
+            Thread.sleep(100);
+        }
     }
 }
