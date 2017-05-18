@@ -90,6 +90,6 @@ public class CollectTest {
 
     @Test
     public void testGroovy() throws Exception {
-        GroovyExecutor.invoke("ddd.com", "helloworld", null);
+        GroovyExecutor.invoke("eee.com", "helloworld",null );
     }
 }
