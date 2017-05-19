@@ -111,4 +111,9 @@ public class CollectTest {
             i++;
         }
     }
+
+    @Test
+    public void testMQ() throws Exception {
+
+    }
 }

@@ -17,7 +17,7 @@ public class MyDataCacher {
     @Resource
     private GroovyService groovyService;
 
-    private GuavaCache<String, String> groovyCache = GuavaCache.MakeCache(5000, 30, new CacheLoader<String, String>() {
+    private GuavaCache<String, String> groovyCache = GuavaCache.MakeCache(5000, 300, new CacheLoader<String, String>() {
         public String load(String url) {
             return groovyService.getDataParseGroovy(url);
         }

@@ -23,7 +23,6 @@ public class GroovyExecutor {
         //
     }
 
-
     /**
      * 根据脚本key值获得groovy{@link Script}对象
      *
@@ -46,9 +45,9 @@ public class GroovyExecutor {
     /**
      * 执行groovy脚本
      *
-     * @param url 脚本的key值
-     * @param methodName    脚本方法名称
-     * @param params        脚本方法入参
+     * @param url        脚本的key值
+     * @param methodName 脚本方法名称
+     * @param params     脚本方法入参
      * @return
      * @throws Exception
      */
