@@ -118,7 +118,7 @@ public class CollectTest {
 
     @Test
     public void testQueryGroovy() throws Exception {
-        mapper.selectGroovyByUrl("/app/passport/smsLogin");
+        System.out.println(mapper.selectGroovyByUrl("/app/passport/smsLogin"));
     }
 
     @Test
