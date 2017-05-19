@@ -22,14 +22,8 @@
         </property>
     </bean>
 
-    <bean id="monitorInfo" class="com.dmall.monitor.sdk.MonitorConfig" init-method="monitorInit">
-        <constructor-arg name="projectCode" value="rcs"/>
-        <constructor-arg name="appCode" value="rcs-spark-streaming"/>
-        <constructor-arg name="startupMonitor" value="false"/>
-    </bean>
-
     <import resource="spring/spring-config-service.xml"/>
     <import resource="spring/spring-config-domain.xml"/>
-    <import resource="spring/spring-config-dafka-client.xml"/>
+    <import resource="spring/spring-config-dafka.xml"/>
     <import resource="spring/spring-config-dao.xml"/>
 </beans>

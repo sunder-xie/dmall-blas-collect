@@ -1,4 +1,5 @@
 import com.dmall.blas.collect.core.DataFactory;
+import com.dmall.blas.collect.core.DefaultHandler;
 import com.dmall.blas.collect.core.EsSubmitQueue;
 import com.dmall.blas.collect.core.GroovyExecutor;
 import com.dmall.blas.collect.dao.BlasSysInfoMapper;
@@ -123,6 +124,9 @@ public class CollectTest {
 
     @Test
     public void testMQ() throws Exception {
-
+        while (true) {
+            Thread.sleep(1000);
+            System.out.println("测试MQ");
+        }
     }
 }

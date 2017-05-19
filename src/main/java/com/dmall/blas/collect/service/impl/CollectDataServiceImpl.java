@@ -72,12 +72,10 @@ public class CollectDataServiceImpl implements CollectDataService, InitializingB
         return this;
     }
 
-    @Override
     public void afterPropertiesSet() throws Exception {
 
     }
 
-    @Override
     public void destroy() throws Exception {
 
         long start = System.currentTimeMillis();
@@ -121,7 +119,6 @@ public class CollectDataServiceImpl implements CollectDataService, InitializingB
         return false;
     }
 
-    @Override
     public void asynSaveParsedData(Map<String, Object> eventParsedData) {
 
         if (eventParsedData == null) {
@@ -135,7 +132,6 @@ public class CollectDataServiceImpl implements CollectDataService, InitializingB
                 .setSource(eventParsedData);
         // 异步插入
         executorService.execute(new Runnable() {
-            @Override
             public void run() {
                 try {
                     IndexResponse response = requestBuilder.execute().actionGet();
@@ -149,7 +145,6 @@ public class CollectDataServiceImpl implements CollectDataService, InitializingB
         });
     }
 
-    @Override
     public void asynBatchSaveParsedData(final List<Map<String, Object>> eventParsedData) {
 
         if (eventParsedData == null || eventParsedData.size() <= 0) {
@@ -166,7 +161,6 @@ public class CollectDataServiceImpl implements CollectDataService, InitializingB
         }
         // 异步插入
         executorService.execute(new Runnable() {
-            @Override
             public void run() {
                 BulkResponse bulkResponse = bulkRequest.execute().actionGet();
                 BulkItemResponse[] responses = bulkResponse.getItems();
