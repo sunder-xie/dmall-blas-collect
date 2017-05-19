@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd"
+       default-autowire="byName">
+
+    <context:component-scan base-package="com.dmall.blas.collect.dao"/>
+
+    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+
+    <!-- analytics slave 数据源 -->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <property name="url" value="jdbc:MySql://192.168.8.235:3306/dmall_blas?characterEncoding=UTF-8"/>
+        <property name="username" value="root"/>
+        <property name="password" value="111111"/>
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+
+        <property name="filters" value="stat"/>
+        <property name="maxActive" value="20"/>
+        <property name="initialSize" value="4"/>
+        <property name="maxWait" value="30000"/>
+        <property name="minIdle" value="4"/>
+
+        <property name="timeBetweenEvictionRunsMillis">
+            <value>60000</value>
+        </property>
+        <property name="minEvictableIdleTimeMillis">
+            <value>300000</value>
+        </property>
+
+        <property name="validationQuery">
+            <value>SELECT 'x'</value>
+        </property>
+        <property name="testWhileIdle">
+            <value>true</value>
+        </property>
+        <property name="testOnBorrow">
+            <value>true</value>
+        </property>
+        <property name="testOnReturn">
+            <value>false</value>
+        </property>
+
+        <property name="poolPreparedStatements">
+            <value>false</value>
+        </property>
+        <property name="maxOpenPreparedStatements">
+            <value>-1</value>
+        </property>
+    </bean>
+
+    <!-- 配置事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- 数据访问层 mapper配置 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:sqlmap-config.xml"/>
+    </bean>
+
+    <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.dmall.blas.collect.dao"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+    </bean>
+
+
+    <bean id="sqlTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessionFactory"/>
+    </bean>
+    <bean id="batchSqlTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessionFactory"/>
+        <constructor-arg index="1" value="BATCH"/>
+    </bean>
+
+</beans>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="false">
+
+    <property name="outPattern" value="[%-5p]  %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] [%C] - %m%n" />
+    <!-- 文件历史数 -->
+    <property name="maxHistory" value="7" />
+    <!-- logback -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${outPattern}</pattern>
+        </encoder>
+    </appender>
+    
+    <appender name="DEFAULT_FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${dynamic.log.path}/dmall-blas-collect_default.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${dynamic.log.path}/dmall-blas-collect_default.log.%d{yyyy-MM-dd}
+			</fileNamePattern>
+			<maxHistory>${maxHistory}</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${outPattern}</pattern>
+		</encoder>
+	</appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${dynamic.log.path}/dmall-blas-collect.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${dynamic.log.path}/dmall-blas-collect.log.%d{yyyy-MM-dd}
+            </fileNamePattern>
+            <maxHistory>${maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${outPattern}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${dynamic.log.path}/dmall-blas-collect_error.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${dynamic.log.path}/dmall-blas-collect_error.log.%d{yyyy-MM-dd}
+            </fileNamePattern>
+            <maxHistory>${maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${outPattern}</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <appender name="TIMEOUT_APPEND" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${dynamic.log.path}/dmall-blas-collect_timeout.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${dynamic.log.path}/dmall-blas-collect_timeout.log.%d{yyyy-MM-dd}
+            </fileNamePattern>
+            <maxHistory>${maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${outPattern}</pattern>
+        </encoder>
+    </appender>
+    
+    <appender name="AUTO_ACTIVE_APPEND" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${dynamic.log.path}/dmall-blas-collect_auto_acitve.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${dynamic.log.path}/dmall-blas-collect_auto_acitve.log.%d{yyyy-MM-dd}
+            </fileNamePattern>
+            <maxHistory>${maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${outPattern}</pattern>
+        </encoder>
+    </appender>
+    
+    <logger name="TIMEOUT" level="DEBUG" additivity="false">
+        <if condition='"true".equals("true")'>
+            <then>
+                <appender-ref ref="CONSOLE" />
+            </then>
+        </if>
+        <appender-ref ref="TIMEOUT_APPEND" />
+    </logger>
+    
+    <logger name="AUTO_ACTIVE" level="DEBUG" additivity="false">
+        <if condition='"true".equals("true")'>
+            <then>
+                <appender-ref ref="CONSOLE" />
+            </then>
+        </if>
+        <appender-ref ref="AUTO_ACTIVE_APPEND" />
+    </logger>
+
+    <!-- 屏蔽 dubbo 日志-->
+    <logger name="com.alibaba.dubbo" level="error" additivity="false">
+        <if condition='"true".equals("true")'>
+            <then>
+                <appender-ref ref="CONSOLE" />
+            </then>
+        </if>
+        <appender-ref ref="FILE" />
+    </logger>
+
+    <logger name="org.springframework" level="error" additivity="false">
+        <if condition='"true".equals("true")'>
+            <then>
+                <appender-ref ref="CONSOLE" />
+            </then>
+        </if>
+        <appender-ref ref="FILE" />
+    </logger>
+
+    <root level="DEBUG">
+        <if condition='"true".equals("true")'>
+            <then>
+                <appender-ref ref="CONSOLE" />
+            </then>
+        </if>
+        <appender-ref ref="FILE" />
+      <!--   <appender-ref ref="DEFAULT_FILE" /> -->
+        <appender-ref ref="ERROR" />
+    </root>
+
+</configuration>
