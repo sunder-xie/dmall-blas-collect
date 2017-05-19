@@ -1,6 +1,7 @@
 import com.dmall.blas.collect.core.DataFactory;
 import com.dmall.blas.collect.core.EsSubmitQueue;
 import com.dmall.blas.collect.core.GroovyExecutor;
+import com.dmall.blas.collect.dao.BlasSysInfoMapper;
 import com.dmall.blas.collect.service.CollectDataService;
 import com.dmall.blas.collect.service.GroovyService;
 import com.dmall.blas.collect.util.ESUtils;
@@ -39,6 +40,9 @@ public class CollectTest {
 
     @Resource
     private EsSubmitQueue esSubmitQueue;
+
+    @Resource
+    private BlasSysInfoMapper mapper;
 
     @Test
     public void test() throws Exception {
@@ -110,6 +114,11 @@ public class CollectTest {
             esSubmitQueue.append(map);
             i++;
         }
+    }
+
+    @Test
+    public void testQueryGroovy() throws Exception {
+        mapper.selectGroovyByUrl("/app/passport/smsLogin");
     }
 
     @Test
