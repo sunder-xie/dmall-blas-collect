@@ -32,24 +32,28 @@ public class DefaultHandler implements SubscribeHandler {
 //                map.put("content", "content");
 //                map.put("updatetime", "2017-09-12");
 //                esSubmitQueue.append(map);
-                if (!msg.contains("ERROR")){
-                int indexOfUrl = msg.indexOf("url");
-                int indexOfFirstMark = msg.indexOf("|");
-                String url = msg.substring(indexOfUrl + 4, indexOfFirstMark);
-                if (list.contains(url)) {
-                    HashMap<String, Object> map = new HashMap<String, Object>();
-                    String content = msg.substring(indexOfFirstMark, msg.length());
-                    String[] split = content.split("\\|-\\|");
-                    for (int i = 0; i < split.length; i++) {
-                        String[] entry = split[i].split("=");
-                        if (entry.length > 1) {
-                            map.put(entry[0], entry[1]);
-                        } else {
-                            map.put(entry[0], "");
+                try{
+                if (!msg.contains("ERROR")) {
+                    int indexOfUrl = msg.indexOf("url");
+                    int indexOfFirstMark = msg.indexOf("|");
+                    String url = msg.substring(indexOfUrl + 4, indexOfFirstMark);
+                    if (list.contains(url)) {
+                        HashMap<String, Object> map = new HashMap<String, Object>();
+                        String content = msg.substring(indexOfFirstMark, msg.length());
+                        String[] split = content.split("\\|-\\|");
+                        for (int i = 0; i < split.length; i++) {
+                            String[] entry = split[i].split("=");
+                            if (entry.length > 1) {
+                                map.put(entry[0], entry[1]);
+                            } else {
+                                map.put(entry[0], "");
+                            }
                         }
+                        esSubmitQueue.append(map);
                     }
-                    esSubmitQueue.append(map);
-                }}
+                }}catch (Exception e){
+                    e.printStackTrace();
+                }
             }
         }
     }
