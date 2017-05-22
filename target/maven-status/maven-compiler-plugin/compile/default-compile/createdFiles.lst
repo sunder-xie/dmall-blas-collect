@@ -30,5 +30,6 @@ com/dmall/blas/collect/service/impl/CollectDataServiceImpl.class
 com/dmall/blas/collect/enums/FileWriterType.class
 com/dmall/blas/collect/service/impl/GroovyServiceImpl.class
 com/dmall/blas/collect/util/LogHelper.class
+com/dmall/blas/collect/core/Test.class
 com/dmall/blas/collect/service/impl/CollectDataServiceImpl$2.class
 com/dmall/blas/collect/util/DataTypeEnum$DataChecker.class

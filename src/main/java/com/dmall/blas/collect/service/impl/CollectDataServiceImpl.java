@@ -128,7 +128,7 @@ public class CollectDataServiceImpl implements CollectDataService, InitializingB
         // 记录开始时间
         final long start = System.currentTimeMillis();
 
-        final IndexRequestBuilder requestBuilder = esClient.prepareIndex("blog", "article")
+        final IndexRequestBuilder requestBuilder = esClient.prepareIndex("dmall-blas-collect", "log")
                 .setSource(eventParsedData);
         // 异步插入
         executorService.execute(new Runnable() {
@@ -156,7 +156,7 @@ public class CollectDataServiceImpl implements CollectDataService, InitializingB
 
         final BulkRequestBuilder bulkRequest = esClient.prepareBulk();
         for (Map<String, Object> data : eventParsedData) {
-            bulkRequest.add(esClient.prepareIndex("blog", "article")
+            bulkRequest.add(esClient.prepareIndex("dmall-blas-collect", "log")
                     .setSource(data));
         }
         // 异步插入

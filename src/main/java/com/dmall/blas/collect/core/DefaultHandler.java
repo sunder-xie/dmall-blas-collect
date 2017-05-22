@@ -5,7 +5,9 @@ import com.dmall.spotmix.sdk.handler.SubscribeHandler;
 import com.google.protobuf.ProtocolStringList;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -15,19 +17,34 @@ public class DefaultHandler implements SubscribeHandler {
     @Resource
     private EsSubmitQueue esSubmitQueue;
 
+    private static String[] list = new String[]{"/app/passport/login", "/app/passport/smsLogin", "/app/passport/weChatLogin", "/app/passport/register", "/app/passport/validCode"};
+
     public void onLoggingMessages(List<DataPacketMsg.DataPacket> dps) {
         for (DataPacketMsg.DataPacket dataPacket : dps) {
             ProtocolStringList list = dataPacket.getDataMessageList();
             for (String msg : list) {
                 System.out.println(msg);
                 // TODO 自定义日志消费处理逻辑
-                HashMap<String, Object> map = new HashMap<String, Object>();
-                map.put("id", 12);
-                map.put("title", "title");
-                map.put("posttime", "2016-09-22");
-                map.put("content", "content");
-                map.put("updatetime", "2017-09-12");
-                esSubmitQueue.append(map);
+//                HashMap<String, Object> map = new HashMap<String, Object>();
+//                map.put("id", 12);
+//                map.put("title", "title");
+//                map.put("posttime", "2016-09-22");
+//                map.put("content", "content");
+//                map.put("updatetime", "2017-09-12");
+//                esSubmitQueue.append(map);
+                int indexOfUrl = msg.indexOf("url");
+                int indexOfFirstMark = msg.indexOf("|");
+                String url = msg.substring(indexOfUrl + 4, indexOfFirstMark);
+                if (list.contains(url)) {
+                    HashMap<String, Object> map = new HashMap<String, Object>();
+                    String content = msg.substring(indexOfFirstMark, msg.length());
+                    String[] split = content.split("\\|-\\|");
+                    for (int i = 0; i < split.length; i++) {
+                        String[] entry = split[i].split("=");
+                        map.put(entry[0], entry[1]);
+                    }
+                    esSubmitQueue.append(map);
+                }
             }
         }
     }
