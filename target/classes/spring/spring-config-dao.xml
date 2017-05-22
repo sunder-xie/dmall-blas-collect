@@ -16,9 +16,9 @@
 
     <!-- analytics slave 数据源 -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
-        <property name="url" value="jdbc:MySql://192.168.8.235:3306/dmall_blas?characterEncoding=UTF-8"/>
-        <property name="username" value="root"/>
-        <property name="password" value="111111"/>
+        <property name="url" value="jdbc:MySql://m3526i.jxq.db.dmall.com:3526/dmall_blas?characterEncoding=UTF-8"/>
+        <property name="username" value="dmall_blas"/>
+        <property name="password" value="533CVUPCiRcv#19"/>
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
 
         <property name="filters" value="stat"/>
