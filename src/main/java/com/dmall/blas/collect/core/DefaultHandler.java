@@ -23,7 +23,7 @@ public class DefaultHandler implements SubscribeHandler {
         for (DataPacketMsg.DataPacket dataPacket : dps) {
             ProtocolStringList list = dataPacket.getDataMessageList();
             for (String msg : list) {
-                System.out.println(msg);
+//                System.out.println(msg);
                 // TODO 自定义日志消费处理逻辑
 //                HashMap<String, Object> map = new HashMap<String, Object>();
 //                map.put("id", 12);
@@ -32,6 +32,7 @@ public class DefaultHandler implements SubscribeHandler {
 //                map.put("content", "content");
 //                map.put("updatetime", "2017-09-12");
 //                esSubmitQueue.append(map);
+                if (!msg.contains("ERROR")){
                 int indexOfUrl = msg.indexOf("url");
                 int indexOfFirstMark = msg.indexOf("|");
                 String url = msg.substring(indexOfUrl + 4, indexOfFirstMark);
@@ -48,7 +49,7 @@ public class DefaultHandler implements SubscribeHandler {
                         }
                     }
                     esSubmitQueue.append(map);
-                }
+                }}
             }
         }
     }
