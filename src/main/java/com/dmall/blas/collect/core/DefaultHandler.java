@@ -52,6 +52,7 @@ public class DefaultHandler implements SubscribeHandler {
                         esSubmitQueue.append(map);
                     }
                 }}catch (Exception e){
+                    System.out.println(msg);
                     e.printStackTrace();
                 }
             }
