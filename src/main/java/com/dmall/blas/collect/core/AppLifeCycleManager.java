@@ -120,6 +120,4 @@ public abstract class AppLifeCycleManager {
             lifeCycleLock.unlock();
         }
     }
-
-
 }

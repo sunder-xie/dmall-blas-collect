@@ -24,6 +24,7 @@
 
     <import resource="spring/spring-config-service.xml"/>
     <import resource="spring/spring-config-domain.xml"/>
-    <import resource="spring/spring-config-dafka.xml"/>
-    <!--<import resource="spring/spring-config-dao.xml"/>-->
+    <!--<import resource="spring/spring-config-dafka.xml"/>-->
+    <import resource="spring/spring-config-dao.xml"/>
+
 </beans>

@@ -99,7 +99,7 @@ public class CollectTest {
 
     @Test
     public void testGroovy() throws Exception {
-        GroovyExecutor.invoke("eee.com", "helloworld", null);
+        GroovyExecutor.invoke("/app/passport/smsLogin", "helloworld", null);
     }
 
     @Test
