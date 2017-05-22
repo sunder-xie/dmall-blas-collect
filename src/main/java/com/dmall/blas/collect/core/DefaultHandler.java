@@ -41,7 +41,11 @@ public class DefaultHandler implements SubscribeHandler {
                     String[] split = content.split("\\|-\\|");
                     for (int i = 0; i < split.length; i++) {
                         String[] entry = split[i].split("=");
-                        map.put(entry[0], entry[1]);
+                        if (entry.length > 1) {
+                            map.put(entry[0], entry[1]);
+                        } else {
+                            map.put(entry[0], "");
+                        }
                     }
                     esSubmitQueue.append(map);
                 }
