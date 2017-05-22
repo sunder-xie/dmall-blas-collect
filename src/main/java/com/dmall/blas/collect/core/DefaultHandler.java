@@ -23,6 +23,7 @@ public class DefaultHandler implements SubscribeHandler {
         for (DataPacketMsg.DataPacket dataPacket : dps) {
             ProtocolStringList list = dataPacket.getDataMessageList();
             for (String msg : list) {
+                System.out.println(msg);
 //                System.out.println(msg);
                 // TODO 自定义日志消费处理逻辑
 //                HashMap<String, Object> map = new HashMap<String, Object>();
@@ -32,29 +33,29 @@ public class DefaultHandler implements SubscribeHandler {
 //                map.put("content", "content");
 //                map.put("updatetime", "2017-09-12");
 //                esSubmitQueue.append(map);
-                try{
-                if (!msg.contains("ERROR")) {
-                    int indexOfUrl = msg.indexOf("url");
-                    int indexOfFirstMark = msg.indexOf("|");
-                    String url = msg.substring(indexOfUrl + 4, indexOfFirstMark);
-                    if (list.contains(url)) {
-                        HashMap<String, Object> map = new HashMap<String, Object>();
-                        String content = msg.substring(indexOfFirstMark, msg.length());
-                        String[] split = content.split("\\|-\\|");
-                        for (int i = 0; i < split.length; i++) {
-                            String[] entry = split[i].split("=");
-                            if (entry.length > 1) {
-                                map.put(entry[0], entry[1]);
-                            } else {
-                                map.put(entry[0], "");
-                            }
-                        }
-                        esSubmitQueue.append(map);
-                    }
-                }}catch (Exception e){
-                    System.out.println(msg);
-                    e.printStackTrace();
-                }
+//                try{
+//                if (!msg.contains("ERROR")) {
+//                    int indexOfUrl = msg.indexOf("url");
+//                    int indexOfFirstMark = msg.indexOf("|");
+//                    String url = msg.substring(indexOfUrl + 4, indexOfFirstMark);
+//                    if (list.contains(url)) {
+//                        HashMap<String, Object> map = new HashMap<String, Object>();
+//                        String content = msg.substring(indexOfFirstMark, msg.length());
+//                        String[] split = content.split("\\|-\\|");
+//                        for (int i = 0; i < split.length; i++) {
+//                            String[] entry = split[i].split("=");
+//                            if (entry.length > 1) {
+//                                map.put(entry[0], entry[1]);
+//                            } else {
+//                                map.put(entry[0], "");
+//                            }
+//                        }
+//                        esSubmitQueue.append(map);
+//                    }
+//                }}catch (Exception e){
+//                    System.out.println(msg);
+//                    e.printStackTrace();
+//                }
             }
         }
     }
