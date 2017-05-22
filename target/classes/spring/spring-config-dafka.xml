@@ -24,7 +24,7 @@
                 <prop key="auto.commit.enable">false</prop>
                 <prop key="rebalance.max.retries">10</prop>
                 <prop key="rebalance.backoff.ms">3000</prop>
-                <prop key="topic.name">up_collect_dmall_com_nginx_access</prop>
+                <prop key="topic.name">dmall_blas_collect</prop>
                 <prop key="num.packets.per.batch">1</prop>
                 <prop key="num.consumers">1</prop>
                 <prop key="upper.limit.msg.cnt">200</prop>
