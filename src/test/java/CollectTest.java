@@ -49,8 +49,6 @@ public class CollectTest {
     public void test() throws Exception {
 
         try {
-            /* 创建客户端 */
-            // client startup
             Client client = TransportClient.builder().build()
                     .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("127.0.0.1"), 9300));
 
@@ -71,15 +69,34 @@ public class CollectTest {
     }
 
     @Test
-    public void test02() {
-//        Integer id, String title, String posttime, String content, String updatetime
+    public void test02() throws UnknownHostException {
+        String msg = "[INFO ] 2017-05-19 18:22:12.075 [http-8107-438] [LOG_USER_VISIT] - url=/app/apporder/fastScanOrder|-|param=|-|userId=3885866|-|loginId=0d9fed1a-e23d-410c-968c-70d2caf75323|-|IP=192.168.90.229|-|storeId=292|-|platform=ANDROID|-|device=smartisan YQ601 KTU84P dev-keys|-|sysVersion=Android-4.4.4|-|version=3.5.0";
+        int indexOfUrl = msg.indexOf("url");
+        int indexOfFirstMark = msg.indexOf("|");
+        String url = msg.substring(indexOfUrl + 4, indexOfFirstMark);
         HashMap<String, Object> map = new HashMap<String, Object>();
-        map.put("id", 11);
-        map.put("title", "title");
-        map.put("posttime", "2016-09-22");
-        map.put("content", "content");
-        map.put("updatetime", "2017-09-12");
-        service.asynSaveParsedData(map);
+        String content = msg.substring(indexOfFirstMark, msg.length());
+        String[] split = content.split("\\|-\\|");
+        for (int i = 0; i < split.length; i++) {
+            String[] entry = split[i].split("=");
+            if (entry.length > 1) {
+                map.put(entry[0], entry[1]);
+            } else {
+                map.put(entry[0], "");
+            }
+        }
+//        Client client = TransportClient.builder().build()
+//                .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("127.0.0.1"), 9300));
+//        IndexResponse response = client.prepareIndex("dmall-blas-collect", "log").setSource(map).get();
+//        if (response.isCreated()) {
+//            System.out.println("创建成功!");
+//        }
+        int i = 0;
+        while (true) {
+            map.put("id", 12 + i);
+            esSubmitQueue.append(map);
+            i++;
+        }
     }
 
     @Test
