@@ -36,10 +36,12 @@ public class DefaultHandler implements SubscribeHandler {
                             String[] split = content.split("\\|-\\|");
                             for (int i = 0; i < split.length; i++) {
                                 String[] entry = split[i].split("=");
-                                if (entry.length > 1) {
-                                    map.put(entry[0], entry[1]);
-                                } else {
-                                    map.put(entry[0], "");
+                                if (entry[0] != null && !entry[0].equals("")) {
+                                    if (entry.length > 1) {
+                                        map.put(entry[0], entry[1]);
+                                    } else {
+                                        map.put(entry[0], "");
+                                    }
                                 }
                             }
                             System.out.println(map);
