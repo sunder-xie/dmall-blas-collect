@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd ">
+
+    <!-- Connector -->
+    <bean id="connectionFactory" class="com.dmall.spotmix.sdk.core.ConnectionFactory">
+        <property name="accessKey" value="59dd4c34387fe5c498b87c4c94aa9125fb9b6dd6"/>
+        <property name="secretKey" value="67fcaa7444c2522f4c9cac2b5b6a74f114f29069"/>
+        <property name="authUrl" value="10.248.1.24:9437"/>
+    </bean>
+    <bean id="defaultHandler" class="com.dmall.blas.collect.core.DefaultHandler"/>
+
+    <!-- Consumer -->
+    <bean id="subscribeContainer" class="com.dmall.spotmix.sdk.core.ConsumerContainer" init-method="init">
+        <property name="factory" ref="connectionFactory"/>
+        <property name="handler" ref="defaultHandler"/>
+        <property name="properties">
+            <props>
+                <prop key="group.id">group_test</prop>
+                <prop key="auto.offset.reset">smallest</prop>
+                <prop key="zookeeper.connection.timeout.ms">30000</prop>
+                <prop key="zookeeper.session.timeout.ms">10000</prop>
+                <prop key="auto.commit.enable">false</prop>
+                <prop key="rebalance.max.retries">10</prop>
+                <prop key="rebalance.backoff.ms">3000</prop>
+                <prop key="topic.name">dmall_blas_collect</prop>
+                <prop key="num.packets.per.batch">1</prop>
+                <prop key="num.consumers">1</prop>
+                <prop key="upper.limit.msg.cnt">200</prop>
+                <prop key="upper.limit.time.ms">3000</prop>
+            </props>
+        </property>
+    </bean>
+</beans>

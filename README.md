@@ -2,6 +2,8 @@
 mvn clean package -P development -DskipTests
 ```
 
+/usr/local/maven3/bin
+
 ```
 mvn clean package -P online -DskipTests
 ```
