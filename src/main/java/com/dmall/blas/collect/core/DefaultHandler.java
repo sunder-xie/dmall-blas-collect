@@ -25,8 +25,7 @@ public class DefaultHandler implements SubscribeHandler {
         for (DataPacketMsg.DataPacket dataPacket : dps) {
             ProtocolStringList list = dataPacket.getDataMessageList();
             for (String msg : list) {
-//                System.out.println(msg);
-                String message = msg;
+                System.out.println(msg);
                 try {
                     if (!msg.contains("ERROR")) {
                         int indexOfUrl = msg.indexOf("url");
@@ -48,7 +47,6 @@ public class DefaultHandler implements SubscribeHandler {
                         }
                     }
                 } catch (Exception e) {
-                    System.out.println(message);
                     e.printStackTrace();
                 }
             }
