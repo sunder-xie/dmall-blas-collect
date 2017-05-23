@@ -42,14 +42,12 @@ public class DefaultHandler implements SubscribeHandler {
                                     map.put(entry[0], "");
                                 }
                             }
+                            System.out.println(map);
                             esSubmitQueue.append(map);
                         }
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
-                }
-                if (msg.contains(urlList[0])) {
-                    System.out.println(msg);
                 }
             }
         }
