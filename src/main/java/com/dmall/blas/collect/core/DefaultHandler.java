@@ -27,12 +27,11 @@ public class DefaultHandler implements SubscribeHandler {
             for (String msg : list) {
                 try {
                     if (!msg.contains("ERROR")) {
-                        int indexOfUrl = msg.indexOf("url");
-                        int indexOfFirstMark = msg.indexOf("|");
-                        String url = msg.substring(indexOfUrl + 4, indexOfFirstMark);
-                        if (url.equals(urlList[0])) {
+                        if (msg.contains(urlList[0]) || msg.contains(urlList[1]) || msg.contains(urlList[2]) || msg.contains(urlList[3])) {
                             System.out.println(msg);
                             HashMap<String, Object> map = new HashMap<String, Object>();
+                            int indexOfUrl = msg.indexOf("url");
+                            int indexOfFirstMark = msg.indexOf("|");
                             String content = msg.substring(indexOfFirstMark, msg.length());
                             String[] split = content.split("\\|-\\|");
                             for (int i = 0; i < split.length; i++) {
