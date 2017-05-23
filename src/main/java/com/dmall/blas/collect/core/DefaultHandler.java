@@ -19,37 +19,37 @@ public class DefaultHandler implements SubscribeHandler {
     @Resource
     private EsSubmitQueue esSubmitQueue;
 
-    private static String[] list = new String[]{"/app/passport/login", "/app/passport/smsLogin", "/app/passport/weChatLogin", "/app/passport/register", "/app/passport/validCode"};
+    private static String[] urlList = new String[]{"/app/passport/login", "/app/passport/smsLogin", "/app/passport/weChatLogin", "/app/passport/register", "/app/passport/validCode"};
 
     public void onLoggingMessages(List<DataPacketMsg.DataPacket> dps) {
         for (DataPacketMsg.DataPacket dataPacket : dps) {
             ProtocolStringList list = dataPacket.getDataMessageList();
             for (String msg : list) {
-//                try {
-//                    if (!msg.contains("ERROR")) {
-//                        int indexOfUrl = msg.indexOf("url");
-//                        int indexOfFirstMark = msg.indexOf("|");
-//                        String url = msg.substring(indexOfUrl + 4, indexOfFirstMark);
-//                        if (list.contains(url)) {
-//                            System.out.println(msg);
-//                            HashMap<String, Object> map = new HashMap<String, Object>();
-//                            String content = msg.substring(indexOfFirstMark, msg.length());
-//                            String[] split = content.split("\\|-\\|");
-//                            for (int i = 0; i < split.length; i++) {
-//                                String[] entry = split[i].split("=");
-//                                if (entry.length > 1) {
-//                                    map.put(entry[0], entry[1]);
-//                                } else {
-//                                    map.put(entry[0], "");
-//                                }
-//                            }
-//                            esSubmitQueue.append(map);
-//                        }
-//                    }
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-                if (msg.contains(list.get(0))){
+                try {
+                    if (!msg.contains("ERROR")) {
+                        int indexOfUrl = msg.indexOf("url");
+                        int indexOfFirstMark = msg.indexOf("|");
+                        String url = msg.substring(indexOfUrl + 4, indexOfFirstMark);
+                        if (url.equals(urlList[0])) {
+                            System.out.println(msg);
+                            HashMap<String, Object> map = new HashMap<String, Object>();
+                            String content = msg.substring(indexOfFirstMark, msg.length());
+                            String[] split = content.split("\\|-\\|");
+                            for (int i = 0; i < split.length; i++) {
+                                String[] entry = split[i].split("=");
+                                if (entry.length > 1) {
+                                    map.put(entry[0], entry[1]);
+                                } else {
+                                    map.put(entry[0], "");
+                                }
+                            }
+                            esSubmitQueue.append(map);
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                if (msg.contains(urlList[0])) {
                     System.out.println(msg);
                 }
             }
