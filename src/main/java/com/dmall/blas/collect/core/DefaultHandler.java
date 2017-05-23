@@ -5,6 +5,8 @@ import com.dmall.spotmix.sdk.handler.SubscribeHandler;
 import com.google.protobuf.ProtocolStringList;
 
 import javax.annotation.Resource;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -54,4 +56,17 @@ public class DefaultHandler implements SubscribeHandler {
             }
         }
     }
+
+//    private void writeToFile(String msg) {
+//        FileWriter fw = new FileWriter("rfm_data_after.csv");
+//        BufferedWriter bw = new BufferedWriter(fw);
+//        try {
+//            bw.write("hello");
+//            bw.newLine();
+//            bw.write("world");
+//        } finally {
+//            bw.flush();
+//            bw.close();
+//        }
+//    }
 }
