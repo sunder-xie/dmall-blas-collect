@@ -170,6 +170,8 @@ public class CollectDataServiceImpl implements CollectDataService, InitializingB
                         failureCount++;
                         if (response.getFailure() != null) {
                             logger.error("批量插入ES库出错: {}", response.getFailureMessage());
+                        } else {
+                            System.out.println("批量插入ES库成功");
                         }
                     }
                 }
