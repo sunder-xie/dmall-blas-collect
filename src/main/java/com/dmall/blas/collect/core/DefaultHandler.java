@@ -28,7 +28,7 @@ public class DefaultHandler implements SubscribeHandler {
                 try {
                     if (!msg.contains("ERROR")) {
                         if (msg.contains(urlList[0]) || msg.contains(urlList[1]) || msg.contains(urlList[2]) || msg.contains(urlList[3])) {
-                            System.out.println(msg);
+//                            System.out.println(msg);
                             HashMap<String, Object> map = new HashMap<String, Object>();
                             int indexOfUrl = msg.indexOf("url");
                             int indexOfFirstMark = msg.indexOf("|");
@@ -44,7 +44,7 @@ public class DefaultHandler implements SubscribeHandler {
                                     }
                                 }
                             }
-                            System.out.println(map);
+//                            System.out.println(map);
                             esSubmitQueue.append(map);
                         }
                     }
