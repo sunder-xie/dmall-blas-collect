@@ -51,8 +51,6 @@ public class DefaultHandler implements SubscribeHandler {
                     System.out.println(message);
                     e.printStackTrace();
                 }
-
-
             }
         }
     }
