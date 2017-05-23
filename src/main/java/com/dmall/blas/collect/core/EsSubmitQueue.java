@@ -22,7 +22,7 @@ public class EsSubmitQueue implements InitializingBean {
 
     //    private int taskCount = 3; // 开启入处理数据的任务数量
     private int taskCount = 1; // 开启入处理数据的任务数量
-    private int maxCommitCount = 10000; // 批量提交数据的最大数量
+    private int maxCommitCount = 100; // 批量提交数据的最大数量
 
     @Resource
     private CollectDataService collectDataService;
