@@ -25,13 +25,13 @@ public class DefaultHandler implements SubscribeHandler {
         for (DataPacketMsg.DataPacket dataPacket : dps) {
             ProtocolStringList list = dataPacket.getDataMessageList();
             for (String msg : list) {
-                System.out.println(msg);
                 try {
                     if (!msg.contains("ERROR")) {
                         int indexOfUrl = msg.indexOf("url");
                         int indexOfFirstMark = msg.indexOf("|");
                         String url = msg.substring(indexOfUrl + 4, indexOfFirstMark);
                         if (list.contains(url)) {
+                            System.out.println(msg);
                             HashMap<String, Object> map = new HashMap<String, Object>();
                             String content = msg.substring(indexOfFirstMark, msg.length());
                             String[] split = content.split("\\|-\\|");
