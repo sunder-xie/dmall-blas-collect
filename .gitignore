@@ -12,6 +12,8 @@ target/
 *.iml
 *.iws
 
+*.jar
+
 # system ignore
 .DS_Store
 Thumbs.db
