@@ -84,11 +84,11 @@
             <artifactId>slf4j-api</artifactId>
             <version>1.6.4</version>
         </dependency>
-        <dependency>
-            <groupId>com.dmall</groupId>
-            <artifactId>dmall-log</artifactId>
-            <version>8.0</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.dmall</groupId>-->
+            <!--<artifactId>dmall-log</artifactId>-->
+            <!--<version>8.0</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-core</artifactId>
@@ -107,17 +107,6 @@
                 <exclusion>
                     <artifactId>guava</artifactId>
                     <groupId>com.google.guava</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>com.dmall</groupId>
-            <artifactId>dmall-erp-dubbo-service</artifactId>
-            <version>1.0.46.RELEASE</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>dubbo</artifactId>
-                    <groupId>com.alibaba</groupId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -257,17 +246,6 @@
             <version>2.2.0</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.dmall</groupId>
-            <artifactId>dmall-toolsupport-common</artifactId>
-            <version>0.1.2-SNAPSHOT</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.dmall</groupId>
-            <artifactId>dmall-toolsupport-common</artifactId>
-            <version>0.1.2-SNAPSHOT</version>
-        </dependency>
         <dependency>
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy-all</artifactId>
