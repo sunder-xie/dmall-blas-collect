@@ -166,12 +166,11 @@ public class CollectDataServiceImpl implements CollectDataService, InitializingB
                 BulkItemResponse[] responses = bulkResponse.getItems();
                 int failureCount = 0;
                 for (BulkItemResponse response : responses) {
+                    System.out.println("批量插入ES库成功");
                     if (response.isFailed()) {
                         failureCount++;
                         if (response.getFailure() != null) {
                             logger.error("批量插入ES库出错: {}", response.getFailureMessage());
-                        } else {
-                            System.out.println("批量插入ES库成功");
                         }
                     }
                 }
