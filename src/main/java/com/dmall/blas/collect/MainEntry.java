@@ -26,6 +26,7 @@ public class MainEntry {
         if (cxa != null) {
             cxa.destroy();
         }
+
         logger.info("程序退出");
         System.exit(0);
     }

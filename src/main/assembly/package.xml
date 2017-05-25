@@ -31,15 +31,6 @@
             <!-- 过滤文件中的maven变量为maven值 -->
             <filtered>true</filtered>
         </fileSet>
-
-        <fileSet>
-            <directory>${project.basedir}\src\main\script</directory>
-            <outputDirectory></outputDirectory>
-            <includes>
-                <include>*.bat</include>
-            </includes>
-        </fileSet>
-
         <!-- 把项目自己编译出来的jar文件，打包进zip文件的根目录 -->
         <fileSet>
             <directory>${project.build.directory}</directory>
