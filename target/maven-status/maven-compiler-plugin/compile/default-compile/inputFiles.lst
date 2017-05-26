@@ -1,6 +1,5 @@
 /Users/lrkin/Desktop/GitHub/dmall-blas-collect/src/main/java/com/dmall/blas/collect/core/GroovyContext.java
 /Users/lrkin/Desktop/GitHub/dmall-blas-collect/src/main/java/com/dmall/blas/collect/service/impl/GroovyServiceImpl.java
-/Users/lrkin/Desktop/GitHub/dmall-blas-collect/src/main/java/com/dmall/blas/collect/core/DataFactory.java
 /Users/lrkin/Desktop/GitHub/dmall-blas-collect/src/main/java/com/dmall/blas/collect/util/ESUtils.java
 /Users/lrkin/Desktop/GitHub/dmall-blas-collect/src/main/java/com/dmall/blas/collect/core/MyDataCacher.java
 /Users/lrkin/Desktop/GitHub/dmall-blas-collect/src/main/java/com/dmall/blas/collect/core/EsSubmitQueue.java
@@ -18,8 +17,6 @@
 /Users/lrkin/Desktop/GitHub/dmall-blas-collect/src/main/java/com/dmall/blas/collect/service/GroovyService.java
 /Users/lrkin/Desktop/GitHub/dmall-blas-collect/src/main/java/com/dmall/blas/collect/service/impl/CollectDataServiceImpl.java
 /Users/lrkin/Desktop/GitHub/dmall-blas-collect/src/main/java/com/dmall/blas/collect/domain/EventDataQuery.java
-/Users/lrkin/Desktop/GitHub/dmall-blas-collect/src/main/java/com/dmall/blas/collect/core/JsonUtil.java
-/Users/lrkin/Desktop/GitHub/dmall-blas-collect/src/main/java/com/dmall/blas/collect/core/Blog.java
 /Users/lrkin/Desktop/GitHub/dmall-blas-collect/src/main/java/com/dmall/blas/collect/core/Test.java
 /Users/lrkin/Desktop/GitHub/dmall-blas-collect/src/main/java/com/dmall/blas/collect/util/GatherToolkit.java
 /Users/lrkin/Desktop/GitHub/dmall-blas-collect/src/main/java/com/dmall/blas/collect/service/CollectDataService.java

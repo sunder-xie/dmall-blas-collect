@@ -2,14 +2,12 @@ com/dmall/blas/collect/core/CommonConfGroovy.class
 com/dmall/blas/collect/domain/EventDataQuery.class
 com/dmall/blas/collect/core/MyDataCacher.class
 com/dmall/blas/collect/factory/ESTransportClientFactory.class
-com/dmall/blas/collect/core/Blog.class
 com/dmall/blas/collect/service/CollectDataService.class
 com/dmall/blas/collect/core/GroovyExecutor.class
 com/dmall/blas/collect/util/ESUtils.class
 com/dmall/blas/collect/core/EsSubmitQueue.class
 com/dmall/blas/collect/util/DataTypeEnum.class
 com/dmall/blas/collect/service/GroovyService.class
-com/dmall/blas/collect/core/DataFactory.class
 com/dmall/blas/collect/MainEntry.class
 com/dmall/blas/collect/dao/BlasSysInfoMapper.class
 com/dmall/blas/collect/util/DataTypeEnum$1.class
@@ -20,7 +18,6 @@ com/dmall/blas/collect/util/SpringApplicationContextHolder.class
 com/dmall/blas/collect/service/impl/CollectDataServiceImpl$1.class
 com/dmall/blas/collect/util/DataTypeEnum$2.class
 com/dmall/blas/collect/util/logLevel.class
-com/dmall/blas/collect/core/JsonUtil.class
 com/dmall/blas/collect/core/MyDataCacher$1.class
 com/dmall/blas/collect/core/DefaultHandler.class
 com/dmall/blas/collect/core/GroovyContext.class
