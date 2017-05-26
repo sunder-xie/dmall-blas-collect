@@ -1,4 +1,3 @@
-import com.dmall.blas.collect.core.DataFactory;
 import com.dmall.blas.collect.core.DefaultHandler;
 import com.dmall.blas.collect.core.EsSubmitQueue;
 import com.dmall.blas.collect.core.GroovyExecutor;
@@ -46,30 +45,7 @@ public class CollectTest {
     private BlasSysInfoMapper mapper;
 
     @Test
-    public void test() throws Exception {
-
-        try {
-            Client client = TransportClient.builder().build()
-                    .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("127.0.0.1"), 9300));
-
-            List<String> jsonData = DataFactory.getInitJsonData();
-
-            for (int i = 0; i < jsonData.size(); i++) {
-                IndexResponse response = client.prepareIndex("blog", "article").setSource(jsonData.get(i)).get();
-                if (response.isCreated()) {
-                    System.out.println("创建成功!");
-                }
-            }
-            client.close();
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
-    public void test02() throws UnknownHostException {
+    public void test() throws UnknownHostException {
         String msg = "[INFO ] 2017-05-19 18:22:12.075 [http-8107-438] [LOG_USER_VISIT] - url=/app/apporder/fastScanOrder|-|param=|-|userId=3885866|-|loginId=0d9fed1a-e23d-410c-968c-70d2caf75323|-|IP=192.168.90.229|-|storeId=292|-|platform=ANDROID|-|device=smartisan YQ601 KTU84P dev-keys|-|sysVersion=Android-4.4.4|-|version=3.5.0";
         int indexOfUrl = msg.indexOf("url");
         int indexOfFirstMark = msg.indexOf("|");
@@ -116,7 +92,7 @@ public class CollectTest {
 
     @Test
     public void testGroovy() throws Exception {
-        GroovyExecutor.invoke("/app/passport/smsLogin", "helloworld", null);
+        GroovyExecutor.invoke("/app/passport/smsLogin", "parseData", "");
     }
 
     @Test

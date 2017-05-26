@@ -20,7 +20,7 @@ public abstract class AppLifeCycleManager {
 
     /*任务个数信号量*/
     private static CountDownLatch taskSignal = new CountDownLatch(1);
-    /*主线程停止心好累*/
+    /*主线程停止信号量*/
     private static CountDownLatch stoppedSignal;
     /*存储任务线程ID*/
     private static Set<Long> taskIds = new HashSet<Long>();
