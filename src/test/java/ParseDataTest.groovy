@@ -47,7 +47,7 @@ class ParseDataTest {
                             }
                         }
                     } else if (entry[0].equals("param")) {
-                        String[] result = entry[1].substring(1, entry[1].length()-1).split(",\"")
+                        String[] result = entry[1].substring(1, entry[1].length() - 1).split(",\"")
                         for (int f = 0; f < result.length; f++) {
                             String str = result[f].replaceAll("\"", "")
                             String[] paramEntry = str.split(":")
@@ -68,7 +68,6 @@ class ParseDataTest {
 
         System.out.println(map)
     }
-
 
     public static void main(String[] args) {
         parseData("")
